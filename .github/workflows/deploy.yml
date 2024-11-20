@@ -52,9 +52,8 @@ jobs:
       # (3) application-prod.yml 생성
       - name: Generate application.yml
         run: |
-          cd ./src/main/resources
-          touch ./application.yml
-          echo "${{ secrets.APPLICATION_YML }}" >> src/main/resources/application.yml
+          mkdir -p src/main/resources  # 디렉토리 생성
+          echo "${{ secrets.APPLICATION_YML }}" > src/main/resources/application.yml
 
       # (4) Gradle build
       - name: Grant execute permission for gradlew
