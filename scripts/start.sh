@@ -17,5 +17,9 @@ cp $PROJECT_ROOT/build/libs/*.jar $JAR_FILE
 echo "$TIME_NOW > $JAR_FILE 파일 실행" >> $DEPLOY_LOG
 nohup java -jar $JAR_FILE > $APP_LOG 2> $ERROR_LOG &
 
-CURRENT_PID=$(pgrep -f $JAR_FILE)
+
+nohup java -jar $JAR_FILE > $APP_LOG 2> $ERROR_LOG &
+sleep 1  # 약간의 시간 기다리기
+CURRENT_PID=$(ps aux | grep "[s]pring-webapp.jar" | awk '{print $2}')
 echo "$TIME_NOW > 실행된 프로세스 아이디 $CURRENT_PID 입니다." >> $DEPLOY_LOG
+
