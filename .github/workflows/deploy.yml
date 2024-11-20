@@ -41,8 +41,13 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      ## 테스트용 현재 루트 디렉토리 확인!!!!!!!!! 이따가 지우기
+      - name: Print working directory
+        run: pwd
+
+
       # (3) application-prod.yml 생성
-      - name: Generate application-prod.yml
+      - name: Generate application.yml
         run: |
           cd ./src/main/resources
           touch ./application.yml
