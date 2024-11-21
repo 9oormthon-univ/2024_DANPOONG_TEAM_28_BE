@@ -1,6 +1,6 @@
-package com.test.lively.routine.dto;
+package com.be.routine.dto;
 
-import com.test.lively.routine.entity.Routine;
+import com.be.routine.entity.Routine;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
