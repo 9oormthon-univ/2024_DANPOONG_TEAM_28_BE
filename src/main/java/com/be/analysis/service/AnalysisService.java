@@ -141,6 +141,26 @@ public class AnalysisService {
 
         return new RoutineDatesResponseDto(routine.getId(), routine.getName(), year, month, routineDates);
     }
+
+    //  특정 월 카테고리별 수행 횟수 조회(TOP3)
+    @Transactional(readOnly = true)
+    public List<CategoryDto> getMonthCategory(User user, int year, int month) {
+        if(user == null){
+            throw new UserNotExistException(ErrorCode.USER_NOT_EXIST);
+        }
+
+        //특정 연도와 월의 TOP 3개의 카테고리별 수행 횟수를 가지고 옴.
+        List<Object[]> objects = analysisRepository.findTopCategoriesByMonth(user.getId(), year, month);
+
+        //Object[] -> DTO로 변환
+        return objects.stream()
+                .map(result -> new CategoryDto(
+                        (Integer) result[0], //categoryId
+                        (String) result[1], //categoryName
+                        ((Number) result[2]).longValue() //count
+                ))
+                .collect(Collectors.toList());
+    }
 }
 
 
