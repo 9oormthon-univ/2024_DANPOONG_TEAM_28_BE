@@ -20,12 +20,12 @@ public class Mission {
     @Column(name = "NAME", length = 20, nullable = false)
     private String name; //미션 이름
 
-    @Column(name = "REVIEW", length = 50)
-    private String review; //미션 리뷰
-
-    @Column(name = "PHOTO", length = 255)
-    private String photo; //미션 사진
-
-    @Column(name = "STAMP", length = 255)
-    private String stamp; //미션 도장
+//    @Column(name = "REVIEW", length = 50)
+//    private String review; //미션 리뷰
+//
+//    @Column(name = "PHOTO", length = 255)
+//    private String photo; //미션 사진
+//
+//    @Column(name = "STAMP", length = 255)
+//    private String stamp; //미션 도장
 }
