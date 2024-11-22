@@ -128,11 +128,15 @@ public class AnalysisService {
             throw new ForbiddenUserException(ErrorCode.FORBIDDEN_USER);
         }
 
+        //startDate: 월의 첫 날, endDate: 다음 달의 첫 날
+        LocalDateTime startDate = LocalDateTime.of(year, month, 1, 0, 0);
+        LocalDateTime endDate = startDate.plusMonths(1);
+
         //마이 루틴 미션을 수행한 날짜(일) 리턴
-        List<LocalDate> routineDates = userMissionRepository.findByRoutineWithMonth(routineId, year, month)
+        List<LocalDate> routineDates = userMissionRepository.findByRoutineWithDateRange(routineId, startDate, endDate)
                 .stream()
                 .map(UserMission::getMissionDate)
-                .map(LocalDateTime::toLocalDate) //memberMission에서 missionDate가 LocalDateTime이기 때문에 에러가 안 나기 위해서 LocalDate로 변환
+                .map(LocalDateTime::toLocalDate)//memberMission에서 missionDate가 LocalDateTime이기 때문에 에러가 안 나기 위해서 LocalDate로 변환
                 .collect(Collectors.toList());
 
         return new RoutineDatesResponseDto(routine.getId(), routine.getName(), year, month, routineDates);
