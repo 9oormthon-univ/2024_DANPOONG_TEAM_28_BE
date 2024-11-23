@@ -73,17 +73,48 @@ public class AnalysisService {
     }
 
     // 특정 요일 활동 목록
+//    @Transactional(readOnly = true)
+//    public MissionListDto getDayDetailList(User user, int year, int month, int week, int day) {
+//        List<UserMission> userMissions = analysisRepository.findDayDetailList(
+//                user.getId(), year, month, week, day);
+//
+//        List<MissionDto> missionListDto = userMissions.stream()
+//                .map(mission -> new MissionDto(mission, day))
+//                .collect(Collectors.toList());
+//
+//        return new MissionListDto(missionListDto);
+//    }
     @Transactional(readOnly = true)
     public MissionListDto getDayDetailList(User user, int year, int month, int week, int day) {
+        // Repository에서 UserMission 데이터를 직접 가져옴
         List<UserMission> userMissions = analysisRepository.findDayDetailList(
                 user.getId(), year, month, week, day);
 
+        // UserMission 데이터를 MissionDto로 변환
         List<MissionDto> missionListDto = userMissions.stream()
-                .map(mission -> new MissionDto(mission, day))
+                .map(mission -> new MissionDto(mission, day)) // 기존 생성자 사용
                 .collect(Collectors.toList());
 
         return new MissionListDto(missionListDto);
     }
+
+
+    // 특정 요일 활동 목록: 마이 미션만 보기(마이 루틴만 보기)
+//    @Transactional(readOnly = true)
+//    public MissionListDto getDayDetailListByRoutine(User user, int year, int month, int week, int day) {
+//        List<UserMission> userMissions = analysisRepository.findDayDetailListByRoutine(
+//                user.getId(), year, month, week, day);
+//
+//        if (userMissions.isEmpty()) {
+//            throw new IllegalArgumentException("해당 조건에 맞는 마이 루틴 활동이 없습니다.");
+//        }
+//
+//        List<MissionDto> missionListDto = userMissions.stream()
+//                .map(mission -> new MissionDto(mission, day))
+//                .collect(Collectors.toList());
+//
+//        return new MissionListDto(missionListDto);
+//    }
 
     // 특정 요일 활동 목록 상세조회: 날짜, 제목, 사진, 리뷰..등
     @Transactional(readOnly = true)
@@ -160,6 +191,7 @@ public class AnalysisService {
                 ))
                 .collect(Collectors.toList());
     }
+
 }
 
 

@@ -38,6 +38,7 @@ public class UserMission extends BaseTimeEntity {
     @Column(name = "REVIEW", length = 50)
     private String review; //미션 리뷰
 
+
 /*    @Column(name = "PHOTO", length = 255)
     private String photo; //미션 사진*/
 
@@ -55,6 +56,7 @@ public class UserMission extends BaseTimeEntity {
 //        this.photo=photo;
         this.missionDifficulty=missionDifficulty;
     }
+
 
 
 }

@@ -33,7 +33,22 @@ public interface AnalysisRepository extends JpaRepository<UserMission, Integer> 
     );
 
     // 특정 요일 활동 목록 상세 조회
-    @Query(value = "SELECT * FROM user_mission um " +
+//    @Query(value = "SELECT * FROM user_mission um " +
+//            "WHERE um.user_id = :userId " +
+//            "AND YEAR(um.mission_date) = :year " +
+//            "AND MONTH(um.mission_date) = :month " +
+//            "AND CEIL(DAYOFMONTH(um.mission_date) / 7) = :week " +
+//            "AND MOD(DAYOFWEEK(um.mission_date) + 5, 7) = :day", nativeQuery = true)
+//    List<UserMission> findDayDetailList(
+//            @Param("userId") Integer userId,
+//            @Param("year") int year,
+//            @Param("month") int month,
+//            @Param("week") int week,
+//            @Param("day") int day
+//    );
+    // 특정 요일 활동 목록 상세 조회
+    @Query(value = "SELECT um.id, um.mission_date, um.review, um.mission_id, um.routine_id, um.user_id " +
+            "FROM user_mission um " +
             "WHERE um.user_id = :userId " +
             "AND YEAR(um.mission_date) = :year " +
             "AND MONTH(um.mission_date) = :month " +
@@ -46,6 +61,25 @@ public interface AnalysisRepository extends JpaRepository<UserMission, Integer> 
             @Param("week") int week,
             @Param("day") int day
     );
+
+
+
+    // 특정 요일 활동 목록: 마이 미션만 보기(마이 루틴만 보기)
+//    @Query(value = "SELECT * FROM user_mission um " +
+//            "WHERE um.user_id = :userId " +
+//            "AND YEAR(um.mission_date) = :year " +
+//            "AND MONTH(um.mission_date) = :month " +
+//            "AND FLOOR((DAY(um.mission_date) - 1) / 7) + 1 = :week " +
+//            "AND MOD(DAYOFWEEK(um.mission_date) + 5, 7) = :day " +
+//            "AND um.routine_id IS NOT NULL", nativeQuery = true)
+//    List<UserMission> findDayDetailListByRoutine(
+//            @Param("userId") Integer userId,
+//            @Param("year") Integer year,
+//            @Param("month") Integer month,
+//            @Param("week") Integer week,
+//            @Param("day") Integer day
+//    );
+
 
     // 특정 월 카테고리별 수행 횟수 조회(TOP3)
     @Query(value = "SELECT m.category_id AS categoryId, c.name AS categoryName, COUNT(*) AS count " +

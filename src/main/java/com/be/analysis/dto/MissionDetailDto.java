@@ -16,8 +16,9 @@ public class MissionDetailDto {
     private int missionId;
     private String name;
     private String review;
-    private String photo;
-    private String stamp;
+//    private String photo;
+    //------------
+//    private String stamp;
     private LocalDate date; //yyyy-MM-dd
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
@@ -39,8 +40,10 @@ public class MissionDetailDto {
 
         //photo, review, stamp는 항상 user_mission에서 가져옴
         this.review = userMission.getReview();
+
        // this.photo = userMission.getPhoto();
        // this.stamp = userMission.getStamp();
+
 
         if (userMission.getMissionDate() != null) {
             LocalDateTime missionDateTime = userMission.getMissionDate();
