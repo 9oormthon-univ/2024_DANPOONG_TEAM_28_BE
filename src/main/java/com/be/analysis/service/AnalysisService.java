@@ -7,7 +7,6 @@ import com.be.error.exception.ForbiddenUserException;
 import com.be.error.exception.UserNotExistException;
 import com.be.userMission.entity.UserMission;
 import com.be.userMission.repository.UserMissionRepository;
-import com.be.routine.dto.RoutineResponseDto;
 import com.be.routine.entity.Routine;
 import com.be.routine.repository.RoutineRepository;
 import com.be.user.entity.User;
