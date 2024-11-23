@@ -1,4 +1,4 @@
-package com.be.mission.entity;
+package com.be.userMission.entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.AllArgsConstructor;
