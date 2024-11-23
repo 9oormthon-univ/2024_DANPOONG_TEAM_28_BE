@@ -6,6 +6,6 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class UserNotExistException extends RuntimeException{
+public class MissionNotExistException extends RuntimeException{
     private final ErrorCode errorCode;
 }

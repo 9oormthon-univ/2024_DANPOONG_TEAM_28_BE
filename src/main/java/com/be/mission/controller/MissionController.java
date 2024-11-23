@@ -2,18 +2,12 @@ package com.be.mission.controller;
 
 
 import com.be.ApiResponse;
-import com.be.mission.dto.response.MissionListDto;
-import com.be.mission.repository.MissionRepository;
+import com.be.mission.dto.response.DailyMissionListDto;
 import com.be.mission.service.MissionService;
 import com.be.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,14 +17,22 @@ import java.util.List;
 public class MissionController {
     private final MissionService missionService;
 
-    //맞춤형 미션 3개 조회 (중, 하 미션 중 랜덤제공 )
-
-    // 미션 선택 후 미션 홈에 추가
+    //맞춤형 미션 3개 조회
     @GetMapping("")
-    public ResponseEntity<?> getMissionList(CustomUserDetails userDetails) throws Exception {
-        List<MissionListDto> response = missionService.getMissionList( userDetails);
+    public ResponseEntity<?> getDailyMissionList(@RequestParam(value = "firstMissionId", required = false) Integer firstMissionId,@RequestParam(value = "secondMissionId", required = false) Integer secondMissionId,@RequestParam(value = "thirdMissionId", required = false) Integer thirdMissionId,   CustomUserDetails userDetails) throws Exception {
+        List<DailyMissionListDto> response = missionService.getDailyMissionList( firstMissionId,secondMissionId,thirdMissionId,userDetails);
         return ResponseEntity.ok(ApiResponse.success(response));
     }
+
+    //현재까지 완료한 미션 게수
+  /*  @GetMapping("")
+    public ResponseEntity<?> getCompletedMissionCount(CustomUserDetails userDetails) throws Exception {
+        List<DailyMissionListDto> response = missionService.getCompletedMissionCount(userDetails);
+        return ResponseEntity.ok(ApiResponse.success(response));
+    }
+*/
+
+
 
 
 
