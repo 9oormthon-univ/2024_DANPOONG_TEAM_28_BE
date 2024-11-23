@@ -26,4 +26,7 @@ public interface UserMissionRepository extends JpaRepository<UserMission, Intege
             @Param("startDate") LocalDateTime startDate,
             @Param("endDate") LocalDateTime endDate);
 
+
+    @Query("SELECT um.mission.id FROM UserMission um")
+    List<Integer> findAllUserMissionIds();
 }
