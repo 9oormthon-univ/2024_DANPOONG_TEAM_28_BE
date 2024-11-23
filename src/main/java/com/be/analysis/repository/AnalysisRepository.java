@@ -46,4 +46,22 @@ public interface AnalysisRepository extends JpaRepository<UserMission, Integer> 
             @Param("week") int week,
             @Param("day") int day
     );
+
+    // 특정 월 카테고리별 수행 횟수 조회(TOP3)
+    @Query(value = "SELECT m.category_id AS categoryId, c.name AS categoryName, COUNT(*) AS count " +
+            "FROM user_mission um " +
+            "JOIN mission m ON um.mission_id = m.id " +
+            "JOIN category c ON m.category_id = c.id " +
+            "WHERE um.user_id = :userId " +
+            "AND YEAR(um.mission_date) = :year " +
+            "AND MONTH(um.mission_date) = :month " +
+            "GROUP BY m.category_id, c.name " +
+            "ORDER BY count DESC " +
+            "LIMIT 3", nativeQuery = true)
+    List<Object[]> findTopCategoriesByMonth(
+            @Param("userId") Integer userId,
+            @Param("year") int year,
+            @Param("month") int month
+    );
+
 }

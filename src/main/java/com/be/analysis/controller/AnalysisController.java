@@ -87,4 +87,18 @@ public class AnalysisController {
                 .status(HttpStatus.OK)
                 .body(ApiResponse.success(routineDatesResponseDto));
     }
+
+    //  특정 월 카테고리별 수행 횟수 조회(TOP3)
+    @GetMapping("/month")
+    public ResponseEntity<ApiResponse<List<CategoryDto>>> getMonthCategory(
+            @AuthenticationPrincipal CustomUserDetails userDetails,
+            @RequestParam int year,
+            @RequestParam int month){
+        User user = userDetails.getUser();
+        List<CategoryDto> categoryDtoList = analysisService.getMonthCategory(user, year, month);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ApiResponse.success(categoryDtoList));
+    }
+
 }
