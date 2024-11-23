@@ -55,6 +55,21 @@ public class AnalysisController {
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(missionListDto));
     }
 
+    // 특정 요일 활동 목록: 마이 미션만 보기(마이 루틴만 보기)
+//    @GetMapping("/daily/detailList/routine")
+//    public ResponseEntity<ApiResponse<MissionListDto>> getDayDetailListByRoutine(
+//            @AuthenticationPrincipal CustomUserDetails userDetails,
+//            @RequestParam int year,
+//            @RequestParam int month,
+//            @RequestParam int week,
+//            @RequestParam int day
+//    ) {
+//        //로그인한 사용자의 userId
+//        User user = userDetails.getUser();
+//        MissionListDto missionListDto = analysisService.getDayDetailListByRoutine(user, year, month, week, day);
+//        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(missionListDto));
+//    }
+
     // 특정 요일 활동 목록 상세조회: 날짜, 제목, 사진, 리뷰..등
     @GetMapping("/daily/detail")
     public ResponseEntity<ApiResponse<MissionDetailDto>> getDayDetail(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestParam int missionId){
