@@ -29,12 +29,17 @@ public class Mission extends BaseTimeEntity {
     @Column(name = "LEVEL", length = 255)
     private Integer level;
 
+    //미션 완료 여부
+    @Column(name = "IS_COMPLETED", nullable = false)
+    private Boolean isCompleted;
+
     @Builder
-    public Mission(Integer id, Category category, String name,Integer level) {
+    public Mission(Integer id, Category category, String name,Integer level,Boolean isCompleted) {
         this.id = id;
         this.category = category;
         this.name = name;
         this.level= level;
+        this.isCompleted=isCompleted;
     }
 
 }

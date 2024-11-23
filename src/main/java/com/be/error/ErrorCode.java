@@ -1,4 +1,4 @@
-package com.be.error;
+                package com.be.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,8 +23,8 @@ public enum ErrorCode {
 
     // 404 Not Found 찾을 수 없음
     USER_NOT_EXIST(HttpStatus.NOT_FOUND, "존재하지 않는 사용자입니다."),
-    PRODUCT_NOT_EXIST(HttpStatus.NOT_FOUND, "존재하지 않는 상품입니다."),
-    FUNDING_NOT_EXIST(HttpStatus.NOT_FOUND, "존재하지 않는 펀딩입니다."),
+    ROUTINE_NOT_EXIST(HttpStatus.NOT_FOUND, "존재하지 않는 루틴입니다."),
+    MISSION_NOT_EXIST(HttpStatus.NOT_FOUND, "존재하지 않는 미션입니다."),
     WISHLIST_NOT_EXIST(HttpStatus.NOT_FOUND, "존재하지 않는 위시리스트입니다."),
     NOTIFICATION_NOT_EXIST(HttpStatus.NOT_FOUND, "존재하지 않는 알림입니다.");
 

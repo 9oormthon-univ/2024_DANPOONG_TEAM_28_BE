@@ -1,15 +1,12 @@
 package com.be.mission.dto.response;
 
 import com.be.category.entity.Category;
-import com.be.mission.entity.Mission;
-import com.be.userMission.entity.UserMission;
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 
 @Getter
-public class MissionListDto {
+public class DailyMissionListDto {
 
     //미션 리스트 조회
 
@@ -23,14 +20,17 @@ public class MissionListDto {
     //난이도
     private final Integer level;
 
+    //미션 완료 여부
+    private final Boolean isCompleted;
+
     @Builder
-    public MissionListDto(Integer id, Category category,String name, Integer level){
+    public DailyMissionListDto(Integer id, Category category, String name, Integer level, Boolean isCompleted){
         this.id = id;
         this.name = name;
         this.category = category;
         this.level=level;
+        this.isCompleted=isCompleted;
     }
-
 
 
 }

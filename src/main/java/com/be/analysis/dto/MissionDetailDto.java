@@ -40,9 +40,10 @@ public class MissionDetailDto {
 
         //photo, review, stamp는 항상 user_mission에서 가져옴
         this.review = userMission.getReview();
-//        this.photo = userMission.getPhoto();
-        //------------
-//        this.stamp = userMission.getStamp();
+
+       // this.photo = userMission.getPhoto();
+       // this.stamp = userMission.getStamp();
+
 
         if (userMission.getMissionDate() != null) {
             LocalDateTime missionDateTime = userMission.getMissionDate();
