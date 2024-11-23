@@ -1,22 +1,18 @@
 package com.be.mypage.service;
 
 import com.be.error.ErrorCode;
+
 import com.be.error.exception.UserNotExistException;
 import com.be.mypage.dto.MypageResponseDto;
 import com.be.routine.dto.RoutineResponseDto;
-import com.be.routine.entity.Routine;
 import com.be.routine.repository.RoutineRepository;
 import com.be.routine.service.RoutineService;
 import com.be.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class MypageService {
