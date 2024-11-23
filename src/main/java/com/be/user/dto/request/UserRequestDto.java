@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 
-public class UserRequestDTO {
+public class UserRequestDto {
     @Getter
     @Setter
     public static class KakaoLoginDTO {
