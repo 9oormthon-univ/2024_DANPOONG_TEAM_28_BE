@@ -3,7 +3,7 @@ package com.be.userMission.service;
 import com.be.error.exception.MissionNotExistException;
 import com.be.error.exception.RoutineNotExistException;
 import com.be.error.exception.UserNotExistException;
-import com.be.config.S3Service;
+//import com.be.config.S3Service;
 import com.be.error.ErrorCode;
 import com.be.mission.entity.Mission;
 import com.be.mission.repository.MissionRepository;
@@ -35,7 +35,7 @@ public class UserMissionService {
     private final RoutineRepository routineRepository;
     private final UserRepository userRepository;
     private final MissionImageRepository missionImageRepository;
-    private final S3Service s3Service;
+    //private final S3Service s3Service;
 
 
     public void postMissionReview( UserMissionRequestDto request,  MultipartFile image, CustomUserDetails userDetails) throws IOException {
@@ -56,17 +56,17 @@ public class UserMissionService {
                         .missionDifficulty(request.getMissionDifficulty())
                         .build()
         );
-
-        if (image != null && !image.isEmpty()) { // null 체크와 비어있지 않은지 확인
-            String url = s3Service.upload(image, "user_mission");
-
-            MissionImage missionImage = MissionImage.builder()
-                    .mission(mission)
-                    .url(url)
-                    .build();
-
-            missionImageRepository.save(missionImage);
-        }
+//
+//        if (image != null && !image.isEmpty()) { // null 체크와 비어있지 않은지 확인
+//            String url = s3Service.upload(image, "user_mission");
+//
+//            MissionImage missionImage = MissionImage.builder()
+//                    .mission(mission)
+//                    .url(url)
+//                    .build();
+//
+//            missionImageRepository.save(missionImage);
+//        }
     }
 
 }
