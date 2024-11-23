@@ -1,13 +1,17 @@
 package com.be.mission.entity;
 
+
+import com.be.BaseTimeEntity;
 import com.be.category.entity.Category;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
-@Data
+
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "mission")
-public class Mission {
+public class Mission extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +24,17 @@ public class Mission {
     @Column(name = "NAME", length = 20, nullable = false)
     private String name; //미션 이름
 
-//    @Column(name = "REVIEW", length = 50)
-//    private String review; //미션 리뷰
-//
-//    @Column(name = "PHOTO", length = 255)
-//    private String photo; //미션 사진
-//
-//    @Column(name = "STAMP", length = 255)
-//    private String stamp; //미션 도장
+
+    //미션 난이도
+    @Column(name = "LEVEL", length = 255)
+    private Integer level;
+
+    @Builder
+    public Mission(Integer id, Category category, String name,Integer level) {
+        this.id = id;
+        this.category = category;
+        this.name = name;
+        this.level= level;
+    }
+
 }

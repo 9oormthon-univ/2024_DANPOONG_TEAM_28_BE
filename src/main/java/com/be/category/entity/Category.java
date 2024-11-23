@@ -1,5 +1,6 @@
 package com.be.category.entity;
 
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,4 +15,5 @@ public class Category {
 
     @Column(name = "NAME", length = 10, nullable = false)
     private String name; //미션 카테고리 이름
+
 }
