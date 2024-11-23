@@ -4,7 +4,7 @@ import com.be.user.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 
-public class UserResponseDTO {
+public class UserResponseDto {
     @Getter
     @Setter
     public static class TokenDTO {

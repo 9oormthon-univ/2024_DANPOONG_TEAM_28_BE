@@ -1,12 +1,15 @@
 package com.be.userMission.repository;
 
+
 import com.be.userMission.entity.UserMission;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+
 import java.time.LocalDateTime;
+
 import java.util.List;
 
 //UserMissionRepository: 사용자가 수행한 미션(일반미션+마이미션)과 관련해서만 저장하는 UserMission에 대한 Repository입니다
@@ -22,7 +25,5 @@ public interface UserMissionRepository extends JpaRepository<UserMission, Intege
             @Param("routineId") Integer routineId,
             @Param("startDate") LocalDateTime startDate,
             @Param("endDate") LocalDateTime endDate);
-
-
 
 }

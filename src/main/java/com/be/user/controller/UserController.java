@@ -1,7 +1,7 @@
 package com.be.user.controller;
 
 import com.be.ApiResponse;
-import com.be.user.dto.response.UserResponseDTO;
+import com.be.user.dto.response.UserResponseDto;
 import com.be.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class UserController {
 
     @PostMapping("/kakao-login")
     public ResponseEntity<?> kakaoLogin(@RequestParam("code") String code, HttpServletRequest request) throws Exception {
-        UserResponseDTO.KakaoLoginDTO responseDTO = userService.kakaoLogin(code, request);
+        UserResponseDto.KakaoLoginDTO responseDTO = userService.kakaoLogin(code, request);
         return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(responseDTO));
     }
 

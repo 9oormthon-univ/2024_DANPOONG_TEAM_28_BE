@@ -3,8 +3,8 @@ package com.be.user.service;
 import com.be.error.ErrorCode;
 import com.be.error.exception.UserNotExistException;
 import com.be.security.JWTTokenProvider;
-import com.be.user.dto.request.UserRequestDTO;
-import com.be.user.dto.response.UserResponseDTO;
+import com.be.user.dto.request.UserRequestDto;
+import com.be.user.dto.response.UserResponseDto;
 import com.be.user.entity.User;
 import com.be.user.repository.UserRepository;
 import com.google.gson.JsonElement;
@@ -76,16 +76,16 @@ public class UserService {
         return new RedirectView(uri);
     }
 
-    public UserResponseDTO.KakaoLoginDTO kakaoLogin(String code, HttpServletRequest request) throws Exception {
+    public UserResponseDto.KakaoLoginDTO kakaoLogin(String code, HttpServletRequest request) throws Exception {
         tokenInfo = getKakaoToken(code, request);
-        UserRequestDTO.KakaoLoginDTO kakaoUserDTO = getKakaoUser();
+        UserRequestDto.KakaoLoginDTO kakaoUserDTO = getKakaoUser();
         Optional<User> user = userRepository.findByEmail(kakaoUserDTO.getEmail());
 
         if (user.isEmpty()) {
             join(kakaoUserDTO);
         }
 
-        UserResponseDTO.KakaoLoginDTO responseDTO = login(kakaoUserDTO);
+        UserResponseDto.KakaoLoginDTO responseDTO = login(kakaoUserDTO);
 
         return responseDTO;
     }
@@ -176,8 +176,8 @@ public class UserService {
         return ip;
     }
 
-    private UserRequestDTO.KakaoLoginDTO getKakaoUser() {
-        UserRequestDTO.KakaoLoginDTO kakaoUser = new UserRequestDTO.KakaoLoginDTO();
+    private UserRequestDto.KakaoLoginDTO getKakaoUser() {
+        UserRequestDto.KakaoLoginDTO kakaoUser = new UserRequestDto.KakaoLoginDTO();
 
         String requestURL = userInfoUri;
 
@@ -221,16 +221,16 @@ public class UserService {
     }
 
     @Transactional
-    protected void join(UserRequestDTO.KakaoLoginDTO requestDTO) throws Exception {
+    protected void join(UserRequestDto.KakaoLoginDTO requestDTO) throws Exception {
         userRepository.save(requestDTO.toEntity());
     }
 
-    private UserResponseDTO.KakaoLoginDTO login(UserRequestDTO.KakaoLoginDTO requestDTO) {
+    private UserResponseDto.KakaoLoginDTO login(UserRequestDto.KakaoLoginDTO requestDTO) {
         User user = userRepository.findByEmail(requestDTO.getEmail())
                 .orElseThrow(() -> new UserNotExistException(ErrorCode.USER_NOT_EXIST));
-        UserResponseDTO.TokenDTO tokenDTO = jwtTokenProvider.createToken(user);
+        UserResponseDto.TokenDTO tokenDTO = jwtTokenProvider.createToken(user);
 
-        return new UserResponseDTO.KakaoLoginDTO(tokenDTO, user);
+        return new UserResponseDto.KakaoLoginDTO(tokenDTO, user);
     }
 
 }

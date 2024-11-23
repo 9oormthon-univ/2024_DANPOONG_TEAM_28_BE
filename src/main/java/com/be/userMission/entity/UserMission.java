@@ -41,3 +41,4 @@ public class UserMission {
     @Column(name = "STAMP", length = 255)
     private String stamp; //미션 도장
 }
+
