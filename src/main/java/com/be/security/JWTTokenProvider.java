@@ -5,7 +5,7 @@ import com.be.error.ErrorCode;
 import com.be.error.exception.ExpiredJWTTokenException;
 import com.be.error.exception.InvalidJWTTokenException;
 import com.be.error.exception.UnsupportedJWTTokenException;
-import com.be.user.dto.response.UserResponseDTO;
+import com.be.user.dto.response.UserResponseDto;
 import com.be.user.entity.User;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -31,7 +31,7 @@ public class JWTTokenProvider {
         this.SECRET_KEY = Keys.hmacShaKeyFor(secretKeyBytes);
     }
 
-    public UserResponseDTO.TokenDTO createToken(User user) {
+    public UserResponseDto.TokenDTO createToken(User user) {
         String accessToken = Jwts.builder()
                 .setSubject("Token")
                 .setClaims(createClaims(user))
@@ -47,7 +47,7 @@ public class JWTTokenProvider {
                 .setExpiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN_VALID_TIME))
                 .signWith(SECRET_KEY, SignatureAlgorithm.HS512)
                 .compact();
-        return new UserResponseDTO.TokenDTO(accessToken, refreshToken);
+        return new UserResponseDto.TokenDTO(accessToken, refreshToken);
     }
 
     private Claims createClaims(User user) {
